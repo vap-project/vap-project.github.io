@@ -14,13 +14,14 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.png" type="image/png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
@@ -38,32 +39,20 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="#">Sangoh Lee</a>
-              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; margin-left: 2px; border: none;">
-                <i class="fab fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/sangoh-lee-6aba1a23a/" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; margin-left: 2px; border: none; vertical-align: middle;">
+                <i class="fab fa-linkedin" style="color: #0077b5;"></i>
               </a>
-              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; border: none;">
-                <i class="fab fa-x-twitter"></i>
+              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; border: none; vertical-align: middle;">
+                <i class="fab fa-twitter" style="color: #1DA1F2;"></i>
               </a>
             </span>
             ,
             <span class="author-block">
               <a href="#">Sangwoo Mo</a>
-              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; margin-left: 2px; border: none;">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; border: none;">
-                <i class="fab fa-x-twitter"></i>
-              </a>
             </span>
             ,
             <span class="author-block">
               <a href="#">Wook-Shin Han</a>
-              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; margin-left: 2px; border: none;">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; border: none;">
-                <i class="fab fa-x-twitter"></i>
-              </a>
             </span>
           </div>
 
@@ -107,6 +96,26 @@
                       <p style="font-size:18px">🤗</p>
                   </span>
                   <span>Dataset</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.linkedin.com/in/sangoh-lee-6aba1a23a/"
+                   target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-linkedin"></i>
+                  </span>
+                  <span>LinkedIn</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
                   </a>
               </span>
             </div>
@@ -202,38 +211,51 @@ Experiments show that VAP consistently outperforms generic policies and token-le
     <h2 class="title is-3 has-text-centered" style="margin-top: 2rem;">Quantitative Analysis</h2>
     
     <div class="columns is-centered">
-      <div class="column is-half has-text-centered">
+      <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Google Robot (Fractal)</h4>
         <img src="./static/images/table2.png" alt="Table 2 Results" style="width:100%;">
-        <p class="is-size-7 has-text-left">
+        <p class="is-size-7 has-text-left" style="margin-top: 0.5rem;">
           <strong>Table 2.</strong> VAP significantly outperforms generic policies and text-based prompts in both 'Visual Matching' and 'Visual Variant' tracks.
         </p>
       </div>
-      <div class="column is-half has-text-centered">
+    </div>
+    
+    <div style="margin-bottom: 2rem;"></div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">WidowX (Bridge)</h4>
         <img src="./static/images/table3.png" alt="Table 3 Results" style="width:100%;">
-        <p class="is-size-7 has-text-left">
+        <p class="is-size-7 has-text-left" style="margin-top: 0.5rem;">
           <strong>Table 3.</strong> On the WidowX arm, baselines often fail to identify the correct instance (near-zero success), while VAP achieves high success rates.
         </p>
       </div>
     </div>
 
-    <div class="columns is-centered" style="margin-top: 2rem;">
-      <div class="column is-half has-text-centered">
+    <div style="margin-bottom: 2rem;"></div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Personalized-VLABench</h4>
         <img src="./static/images/table4.png" alt="Table 4 Results" style="width:100%;">
-        <p class="is-size-7 has-text-left">
+        <p class="is-size-7 has-text-left" style="margin-top: 0.5rem;">
           <strong>Table 4.</strong> Multi-view selection results. VAP achieves the highest Success Rate (SR) across all 5 object categories.
         </p>
       </div>
-      <div class="column is-half has-text-centered">
+    </div>
+
+    <div style="margin-bottom: 2rem;"></div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Real-world Performance</h4>
         <img src="./static/images/figure5.png" alt="Real-world Results" style="width:100%;">
-        <p class="is-size-7 has-text-left">
+        <p class="is-size-7 has-text-left" style="margin-top: 0.5rem;">
           <strong>Figure 5.</strong> Real-world success rates. VAP (yellow) consistently outperforms baselines (blue/green/red) in both pointing and pick-and-place tasks.
         </p>
       </div>
     </div>
+
   </div>
 </section>
 
