@@ -65,19 +65,54 @@
 
     /* 4. ★★★ MOBILE CRITICAL FIXES ★★★ */
     @media screen and (max-width: 768px) {
-      /* [Fix 1] Banner Image Overflow Control */
-      .hero-body {
-        padding: 1.5rem 1rem; /* 좌우 패딩을 줄여서 공간 확보 */
+      /* [Fix 1] Hero Teaser Section - Container & Padding */
+      .hero.teaser .hero-body {
+        padding: 1.5rem 0.75rem !important; /* 최소 패딩으로 공간 최대 활용 */
       }
-      
+
+      .hero.teaser .container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+      }
+
+      /* [Fix 2] Banner Image Section */
+      .hero.teaser .columns {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      .hero.teaser .column {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+      }
+
       .banner-image {
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
         object-fit: contain;
+        border-radius: 8px !important; /* 모바일에서 약간 작은 radius */
       }
 
-      /* [Fix 2] Video Sizing on Mobile */
+      /* [Fix 3] Text Content - Full Width & Readable Font */
+      .hero.teaser .is-four-fifths {
+        width: 100% !important; /* 모바일에서 전체 너비 사용 */
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+      }
+
+      .hero.teaser .content.has-text-justified {
+        font-size: 1rem !important; /* 모바일에서 약간 작은 폰트 */
+        text-align: left !important; /* justify보다 left가 모바일에서 더 읽기 쉬움 */
+      }
+
+      /* [Fix 4] Carousel Container - Prevent Overflow */
+      .carousel.results-carousel {
+        width: 100% !important;
+        overflow: hidden !important;
+      }
+
+      /* [Fix 5] Video Sizing on Mobile */
       .carousel-video {
         height: auto !important;
         width: 100% !important;
@@ -85,7 +120,24 @@
         aspect-ratio: 16/9; /* 비디오 비율 강제 유지 */
       }
 
-      /* [Fix 3] Force Navigation Arrows to Appear */
+      .carousel-item-container {
+        padding: 5px !important; /* 모바일에서 패딩 감소 */
+      }
+
+      .carousel-item-container p {
+        font-size: 0.9rem !important; /* 캡션 폰트 크기 조정 */
+        margin-top: 0.5rem !important;
+        padding: 0 0.5rem !important;
+      }
+
+      /* [Fix 6] Subtitle Spacing */
+      .hero.teaser .subtitle {
+        font-size: 1rem !important;
+        padding: 0 1rem !important;
+        margin-top: 1rem !important;
+      }
+
+      /* [Fix 7] Force Navigation Arrows to Appear */
       /* Bulma Carousel hides these by default on touch devices. We force them back. */
       .slider-navigation-previous,
       .slider-navigation-next {
