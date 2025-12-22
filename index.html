@@ -8,9 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -28,139 +27,45 @@
   <script src="./static/js/index.js"></script>
 
   <style>
-    :root {
-      --bg-color: #f5f5f7;       /* Apple Light Gray Background */
-      --card-bg: #ffffff;        /* Pure White for Cards */
-      --text-main: #1d1d1f;      /* Apple Dark Gray Text */
-      --text-sub: #86868b;       /* Subtitle Gray */
-      --accent: #0066cc;         /* Apple Link Blue */
-      --shadow-soft: 0 4px 20px rgba(0,0,0,0.04);
-      --shadow-hover: 0 10px 30px rgba(0,0,0,0.12);
-      --radius-lg: 20px;
-      --radius-md: 12px;
+    /* 1. Interactive Hover Effect (Subtle) */
+    .hover-effect {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px; /* Slight rounding for smoother look */
     }
-
-    body {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    /* Title Styling */
-    .publication-title {
-      font-weight: 700;
-      color: #000;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem !important;
-    }
-
-    /* Authors */
-    .publication-authors a {
-      color: var(--accent);
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-    .publication-authors a:hover {
-      color: #004499;
-      text-decoration: underline;
-    }
-
-    /* Buttons (Pill Shape) */
-    .button.is-rounded {
-      border-radius: 9999px;
-      padding-left: 1.5em;
-      padding-right: 1.5em;
-      font-weight: 500;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      border: 1px solid #e5e5e5;
-      background-color: white;
-      color: var(--text-main);
-    }
-    .button.is-rounded:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .button.is-dark { 
-      background-color: #1d1d1f !important; 
-      color: white !important; 
-      border: none;
-    }
-    .button.is-dark:hover {
-      background-color: #333 !important;
-      transform: scale(1.05);
-    }
-
-    /* Images & Videos: Apple-like Rounded Corners & Shadow */
-    img, video {
-      border-radius: var(--radius-md);
-      /* Subtle shadow by default */
-      box-shadow: var(--shadow-soft); 
-      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    /* Hover Effect: Scale Up & Float */
+    
     .hover-effect:hover {
-      transform: translateY(-5px) scale(1.01);
-      box-shadow: var(--shadow-hover);
+      transform: translateY(-5px) scale(1.01); /* Slight lift */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Soft shadow */
     }
 
-    /* Carousel Specifics */
+    /* 2. Carousel Layout Fixes */
+    /* Container for Video + Text */
     .carousel-item-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      min-height: 320px;
+      min-height: 340px; /* Fixed height container to prevent jumping */
       height: auto;
       padding-bottom: 10px;
     }
+
+    /* Video Sizing */
     .carousel-video {
-      height: 280px; 
-      width: auto;   
-      object-fit: contain; 
-      border-radius: var(--radius-md);
-      margin-bottom: 20px;
-      background-color: #000; /* Letterbox fill */
+      height: 280px; /* Force fixed height */
+      width: auto;   /* Maintain aspect ratio */
+      object-fit: contain; /* Ensure full video is visible */
+      border-radius: 10px;
+      margin-bottom: 15px; /* Space between video and text */
+      background-color: #000; /* Letterboxing background */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+
+    /* Caption Styling */
     .carousel-caption {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      color: var(--text-main);
-      letter-spacing: -0.01em;
-    }
-
-    /* Section Styling */
-    .hero.teaser {
-      background-color: var(--card-bg);
-      padding-bottom: 3rem;
-    }
-    .hero.is-light {
-      background-color: var(--bg-color); /* Maintain contrast */
-    }
-    
-    /* Box/Content Styling */
-    .box-container {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    /* Text Justification Fix */
-    .content.has-text-justified {
-      text-align: justify;
-      hyphens: auto;
-    }
-    
-    /* Custom Highlight Span */
-    .dnerf {
-      font-weight: 700;
-      color: var(--accent);
+      color: #4a4a4a;
     }
   </style>
 </head>
@@ -189,36 +94,49 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block" style="color: var(--text-sub);">Pohang University of Science and Technology (POSTECH)</span>
+            <span class="author-block">Pohang University of Science and Technology (POSTECH)</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="./static/paper.pdf" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <a href="./static/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark hover-effect">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
                   <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark hover-effect">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
                   <span>arXiv</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://github.com/vap-project/vap" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span>
+                <a href="https://github.com/vap-project/vap"
+                   class="external-link button is-normal is-rounded is-dark hover-effect">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
                   <span>Code</span>
                   </a>
               </span>
               <span class="link-block">
-                <a href="https://huggingface.co/leesangoh" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><p style="font-size:18px">🤗</p></span>
+                <a href="https://huggingface.co/leesangoh"
+                   class="external-link button is-normal is-rounded is-dark hover-effect">
+                  <span class="icon">
+                      <p style="font-size:18px">🤗</p>
+                  </span>
                   <span>Dataset</span>
                   </a>
               </span>
             </div>
+
           </div>
         </div>
       </div>
@@ -230,15 +148,15 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       
-      <div class="columns is-centered has-text-centered" style="margin-bottom: 2.5rem;">
+      <div class="columns is-centered has-text-centered" style="margin-bottom: 2rem;">
         <div class="column is-full-width">
           <img src="./static/images/banner.png" alt="VAP Banner" class="hover-effect" style="width: 100%;"/>
         </div>
       </div>
 
-      <div class="columns is-centered has-text-centered" style="margin-bottom: 2.5rem;">
+      <div class="columns is-centered has-text-centered" style="margin-bottom: 2rem;">
         <div class="column is-four-fifths">
-          <div class="content" style="font-size: 1.2rem; color: #444;">
+          <div class="content has-text-justified" style="font-size: 1.1rem;">
             <p>
               Imagine asking for your favorite coffee mug while getting ready for work, or having a robot fetch your pet’s specific toy from a pile of similar objects. 
               To be truly useful in daily life, robots must discern the subtle details that distinguish <strong>"a cup"</strong> from <strong>"<i>my</i> cup."</strong>
@@ -287,7 +205,7 @@
 
       </div>
       
-      <h2 class="subtitle has-text-centered" style="margin-top: 1.5rem; font-size: 1.25rem; font-weight: 500;">
+      <h2 class="subtitle has-text-centered" style="margin-top: 1.5rem;">
         <span class="dnerf">VAP</span> enables frozen VLA models to manipulate user-specific objects among visually similar distractors.
       </h2>
 
@@ -299,8 +217,8 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3" style="color: var(--text-main);">From "A Cup" to "<i>MY</i> Cup"</h2>
-        <div class="content has-text-justified box-container">
+        <h2 class="title is-3">From "A Cup" to "<i>MY</i> Cup"</h2>
+        <div class="content has-text-justified">
           <p>
             Standard Vision-Language-Action (VLA) models are excellent at understanding generic concepts like "pick up <em>the cup</em>." 
             However, they fail when users ask for specific instances: <strong>"Bring <em>my</em> cup."</strong>
@@ -322,7 +240,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified box-container">
+        <div class="content has-text-justified">
           <p>
 While Vision-Language-Action (VLA) models generalize well to generic instructions, they struggle with personalized commands such as "bring my cup," where the robot must act on one specific instance among visually similar objects. 
 We study this setting of manipulating personal objects, in which a VLA must identify and control a user-specific object unseen during training using only a few reference images. 
@@ -344,11 +262,11 @@ Experiments show that VAP consistently outperforms generic policies and token-le
         <h2 class="title is-3">Method: Visual Attentive Prompting</h2>
         <div class="content has-text-centered">
           <img src="./static/images/pipeline.png"
-               class="hover-effect"
                alt="VAP Pipeline"
+               class="hover-effect"
                style="width: 100%; max-width: 900px;"/>
         </div>
-        <div class="content has-text-justified" style="margin-top: 1.5rem;">
+        <div class="content has-text-justified" style="margin-top: 1rem;">
           <p>
             VAP is a <strong>training-free</strong> framework that enables frozen VLA models to understand personalized references.
             Given a few reference images of a user's object (e.g., "my toy owl"), VAP first grounds the object in the current scene using an open-vocabulary detector and a retriever. 
@@ -361,18 +279,18 @@ Experiments show that VAP consistently outperforms generic policies and token-le
   </div>
 </section>
 
-<section class="section hero is-light">
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Benchmarks Overview</h2>
         <div class="content has-text-centered">
           <img src="./static/images/benchmarks.png"
-               class="hover-effect"
                alt="Benchmarks Overview"
+               class="hover-effect"
                style="width: 100%; max-width: 1000px;"/>
         </div>
-        <div class="content has-text-justified" style="margin-top: 1.5rem;">
+        <div class="content has-text-justified" style="margin-top: 1rem;">
           <p>
             We establish three benchmarks to rigorously evaluate instance-level manipulation capabilities. 
             In all settings, the robot must identify a user-specific target (defined by ~5 reference images) among visually similar distractors of the same category.
@@ -447,7 +365,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           </div>
         </div>
 
-        <h3 class="title is-4" style="margin-top: 3rem;">2. Personalized-SIMPLER (Google Robot)</h3>
+        <h3 class="title is-4" style="margin-top: 2rem;">2. Personalized-SIMPLER (Google Robot)</h3>
         <div class="content has-text-justified">
           <p>
              Evaluation on the Google Robot using the Fractal dataset setting. We test robustness across 'Visual Matching' (seen environments) and 'Visual Variant' (unseen backgrounds/lighting) tracks.
@@ -488,7 +406,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           </div>
         </div>
 
-        <h3 class="title is-4" style="margin-top: 3rem;">3. Personalized-VLABench</h3>
+        <h3 class="title is-4" style="margin-top: 2rem;">3. Personalized-VLABench</h3>
         <div class="content has-text-justified">
           <p>
             Multi-view selection tasks on a Franka Emika Panda arm. The agent must identify the correct user object from three camera views (Front, Side, Wrist) and touch it.
@@ -543,15 +461,15 @@ Experiments show that VAP consistently outperforms generic policies and token-le
   </div>
 </section>
 
-<section class="section hero is-light">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Quantitative Analysis</h2>
     
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">WidowX (Bridge)</h4>
-        <img src="./static/images/table3.png" class="hover-effect" alt="Table 3 Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 1rem;">
+        <img src="./static/images/table3.png" alt="Table 3 Results" class="hover-effect" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 0.5rem;">
           <p>
             On the WidowX arm using the Bridge dataset, tasks involve precise pick-and-place in cluttered scenes. 
             While baselines often fail to identify the correct instance (resulting in near-zero success for hard prompts), VAP achieves high success rates across all tasks, effectively grounding the user's object even when visually similar distractors are present.
@@ -560,13 +478,13 @@ Experiments show that VAP consistently outperforms generic policies and token-le
       </div>
     </div>
     
-    <div style="margin-bottom: 3rem;"></div>
+    <div style="margin-bottom: 2rem;"></div>
 
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Google Robot (Fractal)</h4>
-        <img src="./static/images/table2.png" class="hover-effect" alt="Table 2 Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 1rem;">
+        <img src="./static/images/table2.png" alt="Table 2 Results" class="hover-effect" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 0.5rem;">
           <p>
             We evaluate robustness on the Google Robot (Fractal) across 'Visual Matching' (seen environments) and 'Visual Variant' (unseen backgrounds/lighting) tracks. 
             VAP significantly outperforms generic policies and text-based prompts. Notably, in the challenging <strong>Visual Variant</strong> track, VAP maintains a strong success rate of 58.2%, whereas the best baseline drops to 17.3%, demonstrating superior generalization to novel visual conditions.
@@ -575,13 +493,13 @@ Experiments show that VAP consistently outperforms generic policies and token-le
       </div>
     </div>
 
-    <div style="margin-bottom: 3rem;"></div>
+    <div style="margin-bottom: 2rem;"></div>
 
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Personalized-VLABench</h4>
-        <img src="./static/images/table4.png" class="hover-effect" alt="Table 4 Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 1rem;">
+        <img src="./static/images/table4.png" alt="Table 4 Results" class="hover-effect" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 0.5rem;">
           <p>
             In multi-view selection tasks with a Franka Emika Panda, the agent must handle occlusion and consistency across front, side, and wrist cameras.
             VAP achieves the highest Success Rate (SR) across all 5 object categories, proving its ability to aggregate visual cues from multiple viewpoints to resolve ambiguity.
@@ -590,13 +508,13 @@ Experiments show that VAP consistently outperforms generic policies and token-le
       </div>
     </div>
 
-    <div style="margin-bottom: 3rem;"></div>
+    <div style="margin-bottom: 2rem;"></div>
 
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Real-world Performance</h4>
-        <img src="./static/images/figure5.png" class="hover-effect" alt="Real-world Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 1rem;">
+        <img src="./static/images/figure5.png" alt="Real-world Results" class="hover-effect" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 0.5rem;">
           <p>
             We validate VAP on a physical tabletop setup with a SO-101 arm using 8 everyday object categories. 
             VAP (yellow bars) consistently outperforms baselines (blue/green/red) in both pointing and pick-and-place tasks, confirming that our training-free visual prompting method transfers reliably to the real world with unseen physical objects.
