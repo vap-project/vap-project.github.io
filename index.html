@@ -194,7 +194,7 @@
         margin-top: 1rem !important;
       }
 
-      /* [Fix 7] Force Navigation Arrows to Appear - All possible class combinations */
+      /* [Fix 7] HIDE Bulma's navigation arrows on mobile - we use custom ones */
       .slider-navigation-previous,
       .slider-navigation-next,
       .carousel-navigation-previous,
@@ -203,27 +203,9 @@
       button.slider-navigation-next,
       .slider .slider-navigation .slider-navigation-previous,
       .slider .slider-navigation .slider-navigation-next,
-      button[class*="navigation"],
-      [class*="slider-navigation"] {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background-color: rgba(0, 0, 0, 0.6) !important;
-        color: white !important;
-        width: 50px !important;
-        height: 50px !important;
-        border-radius: 50% !important;
-        position: absolute !important;
-        top: 40% !important;
-        transform: translateY(-50%) !important;
-        z-index: 9999 !important;
-        border: 2px solid rgba(255,255,255,0.4) !important;
-        cursor: pointer !important;
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: rgba(255,255,255,0.3) !important;
+      button[class*="navigation"]:not(.custom-nav-btn),
+      [class*="slider-navigation"]:not(.custom-nav-btn) {
+        display: none !important;
       }
 
       /* Arrow Icon Color Fix */

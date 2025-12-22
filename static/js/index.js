@@ -42,56 +42,79 @@ $(document).ready(function() {
 
 	// Initialize all div with carousel class
     var carousels = bulmaCarousel.attach('.carousel', options);
+    var mainCarousel = carousels.length > 0 ? carousels[0] : null;
 
-    // Wire up custom navigation buttons for mobile
-    var customPrevBtn = document.getElementById('custom-prev');
-    var customNextBtn = document.getElementById('custom-next');
+    // Manual carousel control for mobile
+    if (isMobile && mainCarousel) {
+        var currentIndex = 0;
+        var slides = document.querySelectorAll('#results-carousel .item');
+        var totalSlides = slides.length;
 
-    if (customPrevBtn && customNextBtn && carousels.length > 0) {
-        var mainCarousel = carousels[0];
+        console.log('Manual mobile carousel initialized. Total slides:', totalSlides);
 
-        // Previous button
-        customPrevBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Custom PREV clicked');
-            if (mainCarousel && mainCarousel.previous) {
-                mainCarousel.previous();
+        function showSlide(index) {
+            // Use Bulma Carousel's internal state if possible
+            try {
+                // Try to use the carousel's show method
+                if (mainCarousel.state && mainCarousel.state.next !== undefined) {
+                    var targetIndex = index % totalSlides;
+                    mainCarousel.state.next = targetIndex;
+
+                    // Force a re-render by calling the carousel's internal methods
+                    if (typeof mainCarousel._show === 'function') {
+                        mainCarousel._show(targetIndex);
+                    } else if (typeof mainCarousel.show === 'function') {
+                        mainCarousel.show(targetIndex);
+                    }
+                }
+                console.log('Moved to slide:', index);
+            } catch(e) {
+                console.error('Error moving carousel:', e);
             }
-        });
+        }
 
-        customPrevBtn.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Custom PREV touched');
-            if (mainCarousel && mainCarousel.previous) {
-                mainCarousel.previous();
+        // Wire up custom navigation buttons
+        var customPrevBtn = document.getElementById('custom-prev');
+        var customNextBtn = document.getElementById('custom-next');
+
+        if (customPrevBtn && customNextBtn) {
+            function handlePrev(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                console.log('PREV - Moving to index:', currentIndex);
+
+                // Try multiple methods
+                if (mainCarousel.previous && typeof mainCarousel.previous === 'function') {
+                    mainCarousel.previous();
+                } else {
+                    showSlide(currentIndex);
+                }
             }
-        });
 
-        // Next button
-        customNextBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Custom NEXT clicked');
-            if (mainCarousel && mainCarousel.next) {
-                mainCarousel.next();
+            function handleNext(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % totalSlides;
+                console.log('NEXT - Moving to index:', currentIndex);
+
+                // Try multiple methods
+                if (mainCarousel.next && typeof mainCarousel.next === 'function') {
+                    mainCarousel.next();
+                } else {
+                    showSlide(currentIndex);
+                }
             }
-        });
 
-        customNextBtn.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Custom NEXT touched');
-            if (mainCarousel && mainCarousel.next) {
-                mainCarousel.next();
-            }
-        });
+            customPrevBtn.addEventListener('click', handlePrev);
+            customPrevBtn.addEventListener('touchend', handlePrev);
+            customNextBtn.addEventListener('click', handleNext);
+            customNextBtn.addEventListener('touchend', handleNext);
 
-        console.log('Custom navigation buttons wired up successfully!');
-        console.log('Carousel instance:', mainCarousel);
-    } else {
-        console.error('Failed to wire up custom buttons. Buttons or carousel not found.');
+            console.log('Custom buttons wired up!');
+            console.log('Carousel object:', mainCarousel);
+            console.log('Available methods:', Object.keys(mainCarousel));
+        }
     }
 
     // Re-initialize carousel on window resize
@@ -104,6 +127,7 @@ $(document).ready(function() {
                 isMobile = newIsMobile;
                 options.slidesToShow = isMobile ? 1 : 3;
                 carousels = bulmaCarousel.attach('.carousel', options);
+                location.reload(); // Reload to reinitialize properly
             }
         }, 250);
     });
