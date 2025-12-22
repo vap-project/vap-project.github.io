@@ -27,11 +27,16 @@
   <script src="./static/js/index.js"></script>
 
   <style>
-    /* 1. Interactive Hover Effect (PC only) */
+    /* 1. Global Reset to prevent overflow (가로 스크롤/축소 방지) */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    /* 2. Interactive Hover Effect (PC Only) */
     @media screen and (min-width: 769px) {
       .hover-effect {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-radius: 8px;
       }
       .hover-effect:hover {
         transform: translateY(-5px);
@@ -39,84 +44,78 @@
       }
     }
 
-    /* 2. Carousel Layout Logic */
+    /* 3. Carousel & Video Styles */
     .carousel-item-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding-bottom: 10px;
+      justify-content: center;
+      padding: 10px;
     }
 
-    /* Video Default (PC) */
     .carousel-video {
-      height: 280px;       
-      width: auto;         
-      max-width: 100%;     
-      object-fit: contain;
       border-radius: 10px;
-      margin-bottom: 15px;
-      background-color: #000;
+      margin-bottom: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
-    .carousel-caption {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #4a4a4a;
+      
+      /* Default (PC) */
+      height: 280px; 
+      width: auto;
+      max-width: 100%;
     }
 
-    /* 3. Mobile Optimization (The Fix) */
+    /* 4. Mobile Optimization (Crucial Fixes) */
     @media screen and (max-width: 768px) {
       /* Title Sizing */
       .publication-title {
         font-size: 1.8rem !important;
-        line-height: 1.3 !important;
+        line-height: 1.2 !important;
       }
-      
-      /* Banner Fix: Prevent it from being too huge vertically */
-      .hero-body img.hover-effect {
+
+      /* Banner Image Fix: 화면 꽉 차게, 비율 유지 */
+      .hero-body img {
         width: 100% !important;
         height: auto !important;
-        max-height: 300px !important; /* Limit vertical height on mobile */
+        max-width: 100% !important;
         object-fit: contain;
       }
 
-      /* Video Fix: Fit to screen width */
+      /* Video Fix: 화면 너비에 맞춤 */
       .carousel-video {
-        height: auto !important;   
-        width: 100% !important;    
-        max-width: 100% !important;
-        aspect-ratio: 16/9; /* Force standard video ratio */
-        margin-bottom: 10px;
+        height: auto !important;
+        width: 100% !important;
+        max-height: 300px; /* 너무 길어지지 않게 제한 */
       }
-      
-      /* Container Padding Adjustment */
+
+      /* Container Padding: 여백 확보 */
       .container {
         padding-left: 15px;
         padding-right: 15px;
       }
-      
-      /* [Crucial] Force Navigation Arrows Visible on Mobile */
+
+      /* Columns Fix: 찌그러짐 방지 */
+      .columns {
+        display: block !important; /* 세로로 쌓이게 강제 */
+      }
+      .column {
+        width: 100% !important;
+        display: block !important;
+      }
+
+      /* Navigation Arrows: 강제 표시 */
       .slider-navigation-previous,
-      .slider-navigation-next,
-      .carousel-nav-left, 
-      .carousel-nav-right {
-        display: flex !important; /* Force show */
+      .slider-navigation-next {
         opacity: 1 !important;
         visibility: visible !important;
-        background: rgba(255, 255, 255, 0.7) !important; /* Make circle visible */
+        background: rgba(0, 0, 0, 0.3) !important; /* 배경색 추가해서 잘 보이게 */
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        z-index: 100;
-        top: 40% !important; /* Adjust vertical position */
+        width: 35px;
+        height: 35px;
+        top: 40% !important; /* 위치 조정 */
       }
-      
-      /* Adjust arrow icons inside */
       .slider-navigation-previous .icon,
       .slider-navigation-next .icon {
-        color: #333 !important;
+        color: white !important;
       }
     }
   </style>
@@ -200,9 +199,9 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       
-      <div class="columns is-centered has-text-centered" style="margin-bottom: 2rem;">
+      <div class="columns is-centered has-text-centered" style="margin-bottom: 1.5rem;">
         <div class="column is-full-width">
-          <img src="./static/images/banner.png" alt="VAP Banner" class="hover-effect" style="width: 100%; height: auto;"/>
+          <img src="./static/images/banner.png" alt="VAP Banner" class="hover-effect" style="width: 100%; height: auto; border-radius: 10px;"/>
         </div>
       </div>
 
@@ -224,7 +223,7 @@
             <video poster="" id="camera" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/simpler_bridge_camera.mp4" type="video/mp4">
             </video>
-            <p class="carousel-caption">"Put my camera on towel"</p>
+            <p class="is-size-6 has-text-weight-bold has-text-centered">"Put my camera on towel"</p>
           </div>
         </div>
         
@@ -233,7 +232,7 @@
             <video poster="" id="pen" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/simpler_fractal_pen_holder_matching.mp4" type="video/mp4">
             </video>
-            <p class="carousel-caption">"Pick my pen holder"</p>
+            <p class="is-size-6 has-text-weight-bold has-text-centered">"Pick my pen holder"</p>
           </div>
         </div>
 
@@ -242,7 +241,7 @@
             <video poster="" id="bag" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/vlabench_leather_bag.mp4" type="video/mp4">
             </video>
-            <p class="carousel-caption">"Select my leather bag"</p>
+            <p class="is-size-6 has-text-weight-bold has-text-centered">"Select my leather bag"</p>
           </div>
         </div>
 
@@ -251,7 +250,7 @@
             <video poster="" id="shaver" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/simpler_bridge_shaver.mp4" type="video/mp4">
             </video>
-            <p class="carousel-caption">"Pick my shaver"</p>
+            <p class="is-size-6 has-text-weight-bold has-text-centered">"Pick my shaver"</p>
           </div>
         </div>
 
