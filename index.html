@@ -8,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -27,208 +29,85 @@
 
   <style>
     :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --dark-bg: #0f172a;
-      --card-bg: #1e293b;
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --border-color: #334155;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
-      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
-      --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.3);
-    }
-
-    * {
-      scroll-behavior: smooth;
+      --bg-color: #f5f5f7;       /* Apple Light Gray Background */
+      --card-bg: #ffffff;        /* Pure White for Cards */
+      --text-main: #1d1d1f;      /* Apple Dark Gray Text */
+      --text-sub: #86868b;       /* Subtitle Gray */
+      --accent: #0066cc;         /* Apple Link Blue */
+      --shadow-soft: 0 4px 20px rgba(0,0,0,0.04);
+      --shadow-hover: 0 10px 30px rgba(0,0,0,0.12);
+      --radius-lg: 20px;
+      --radius-md: 12px;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: var(--text-primary);
-      overflow-x: hidden;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
     }
 
-    h1, h2, h3, h4, h5 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-    }
-
-    /* Animated background */
-    .hero {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background:
-        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
-      animation: pulse 8s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    .slide-in-up {
-      animation: slideInUp 0.8s ease-out;
-    }
-
-    /* Custom title styling */
+    /* Title Styling */
     .publication-title {
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 2.8rem !important;
-      line-height: 1.3;
-      margin-bottom: 2rem;
-      animation: slideInUp 0.8s ease-out;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem !important;
     }
 
-    /* Author styling */
-    .publication-authors {
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-    }
-
+    /* Authors */
     .publication-authors a {
-      color: #4facfe;
-      text-decoration: none;
-      position: relative;
-      transition: color 0.3s ease;
+      color: var(--accent);
+      font-weight: 500;
+      transition: color 0.2s ease;
     }
-
-    .publication-authors a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-gradient);
-      transition: width 0.3s ease;
-    }
-
     .publication-authors a:hover {
-      color: #00f2fe;
+      color: #004499;
+      text-decoration: underline;
     }
 
-    .publication-authors a:hover::after {
-      width: 100%;
+    /* Buttons (Pill Shape) */
+    .button.is-rounded {
+      border-radius: 9999px;
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid #e5e5e5;
+      background-color: white;
+      color: var(--text-main);
     }
-
-    /* Button styling */
-    .button.is-dark {
-      background: var(--card-bg);
-      border: 2px solid var(--border-color);
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+    .button.is-rounded:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+      color: var(--accent);
     }
-
-    .button.is-dark::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: var(--primary-gradient);
-      transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease;
-      transform: translate(-50%, -50%);
-      z-index: 0;
+    .button.is-dark { 
+      background-color: #1d1d1f !important; 
+      color: white !important; 
+      border: none;
     }
-
-    .button.is-dark:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
     .button.is-dark:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-glow);
-      border-color: #667eea;
+      background-color: #333 !important;
+      transform: scale(1.05);
     }
 
-    .button.is-dark span {
-      position: relative;
-      z-index: 1;
+    /* Images & Videos: Apple-like Rounded Corners & Shadow */
+    img, video {
+      border-radius: var(--radius-md);
+      /* Subtle shadow by default */
+      box-shadow: var(--shadow-soft); 
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    /* Card styling with glass morphism */
-    .glass-card {
-      background: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: var(--shadow-md);
+    /* Hover Effect: Scale Up & Float */
+    .hover-effect:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: var(--shadow-hover);
     }
 
-    .glass-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg), var(--shadow-glow);
-      border-color: #667eea;
-    }
-
-    /* Section styling */
-    section {
-      padding: 4rem 1.5rem;
-      position: relative;
-    }
-
-    section.hero.is-light {
-      background: rgba(30, 41, 59, 0.5);
-      backdrop-filter: blur(10px);
-    }
-
-    /* Teaser section improvements */
-    .teaser .hero-body {
-      padding: 3rem 1.5rem;
-    }
-
-    /* Carousel improvements */
+    /* Carousel Specifics */
     .carousel-item-container {
       display: flex;
       flex-direction: column;
@@ -238,404 +117,55 @@
       height: auto;
       padding-bottom: 10px;
     }
-
     .carousel-video {
-      height: 280px;
-      width: auto;
-      object-fit: contain;
-      border-radius: 16px;
+      height: 280px; 
+      width: auto;   
+      object-fit: contain; 
+      border-radius: var(--radius-md);
       margin-bottom: 20px;
-      box-shadow: var(--shadow-lg);
-      border: 2px solid var(--border-color);
-      transition: all 0.3s ease;
+      background-color: #000; /* Letterbox fill */
     }
-
-    .carousel-video:hover {
-      transform: scale(1.02);
-      box-shadow: var(--shadow-glow);
-      border-color: #667eea;
-    }
-
     .carousel-caption {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-top: 0;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Subtitle with gradient */
-    .subtitle.has-text-centered {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-    }
-
-    .dnerf {
-      background: var(--secondary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-    }
-
-    /* Content sections */
-    .content.has-text-justified {
-      color: var(--text-secondary);
-      line-height: 1.8;
       font-size: 1.05rem;
-    }
-
-    .content.has-text-justified strong {
-      color: var(--text-primary);
       font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
     }
 
-    .content.has-text-justified em {
-      color: #4facfe;
-      font-style: italic;
+    /* Section Styling */
+    .hero.teaser {
+      background-color: var(--card-bg);
+      padding-bottom: 3rem;
     }
-
-    /* Title styling */
-    .title.is-3 {
-      color: var(--text-primary);
-      margin-bottom: 2rem;
-      position: relative;
-      display: inline-block;
+    .hero.is-light {
+      background-color: var(--bg-color); /* Maintain contrast */
     }
-
-    .title.is-3::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: var(--primary-gradient);
-      border-radius: 2px;
-    }
-
-    .has-text-centered .title.is-3::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .title.is-4 {
-      color: var(--text-primary);
-      margin-top: 2rem;
+    
+    /* Box/Content Styling */
+    .box-container {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      margin-top: 1rem;
       margin-bottom: 1rem;
     }
 
-    /* Image styling */
-    img {
-      border-radius: 12px;
-      box-shadow: var(--shadow-md);
-      transition: all 0.3s ease;
+    /* Text Justification Fix */
+    .content.has-text-justified {
+      text-align: justify;
+      hyphens: auto;
     }
-
-    img:hover {
-      transform: scale(1.02);
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* Video grid styling */
-    video {
-      border-radius: 12px;
-      box-shadow: var(--shadow-md);
-      border: 2px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    video:hover {
-      box-shadow: var(--shadow-glow);
-      border-color: #667eea;
-    }
-
-    /* BibTeX section */
-    #BibTeX pre {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow-md);
-      color: #4facfe;
-      font-family: 'Courier New', monospace;
-    }
-
-    #BibTeX pre code {
-      color: var(--text-secondary);
-    }
-
-    /* Footer styling */
-    .footer {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-secondary);
-      border-top: 1px solid var(--border-color);
-      padding: 3rem 1.5rem;
-    }
-
-    .footer a {
-      color: #4facfe;
-      transition: color 0.3s ease;
-    }
-
-    .footer a:hover {
-      color: #00f2fe;
-    }
-
-    /* Stats cards */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--primary-gradient);
-      transform: scaleX(0);
-      transition: transform 0.4s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-glow);
-      border-color: #667eea;
-    }
-
-    .stat-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
+    
+    /* Custom Highlight Span */
+    .dnerf {
       font-weight: 700;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    /* Scroll reveal animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Floating particles effect */
-    .particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: rgba(102, 126, 234, 0.5);
-      border-radius: 50%;
-      animation: float 6s infinite ease-in-out;
-    }
-
-    /* Responsive adjustments */
-    @media screen and (max-width: 768px) {
-      .publication-title {
-        font-size: 2rem !important;
-      }
-
-      .stat-number {
-        font-size: 2rem;
-      }
-    }
-
-    /* Loading animation */
-    @keyframes shimmer {
-      0% {
-        background-position: -1000px 0;
-      }
-      100% {
-        background-position: 1000px 0;
-      }
-    }
-
-    .shimmer {
-      animation: shimmer 2s infinite linear;
-      background: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(102, 126, 234, 0.1) 50%,
-        transparent 100%
-      );
-      background-size: 1000px 100%;
-    }
-    /* Scroll to top button */
-    .scroll-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background: var(--primary-gradient);
-      border: none;
-      border-radius: 50%;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 1000;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .scroll-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .scroll-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-glow);
-    }
-
-    /* Progress bar */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: var(--primary-gradient);
-      width: 0%;
-      z-index: 9999;
-      transition: width 0.1s ease;
-    }
-
-    /* Video caption styling */
-    .has-text-weight-semibold {
-      color: var(--text-primary);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      padding: 0.5rem 1rem;
-      background: rgba(102, 126, 234, 0.1);
-      border-left: 3px solid #667eea;
-      border-radius: 4px;
-    }
-
-    /* Enhanced columns for videos */
-    .columns.is-multiline {
-      margin-top: 1.5rem;
-    }
-
-    .column.is-half .content,
-    .column.is-one-third .content {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      height: 100%;
-    }
-
-    .column.is-half .content:hover,
-    .column.is-one-third .content:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-glow);
-      border-color: #667eea;
-    }
-
-    /* Table images in quantitative section */
-    .column.is-four-fifths.has-text-centered img {
-      max-width: 100%;
-      height: auto;
-      border: 2px solid var(--border-color);
-    }
-
-    /* Enhanced title for subsections */
-    .title.is-5 {
-      color: var(--text-primary);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border-color);
-    }
-
-    /* Enhanced ul/li in content */
-    .content.has-text-justified ul {
-      margin-top: 1rem;
-      margin-left: 1.5rem;
-    }
-
-    .content.has-text-justified ul li {
-      margin-bottom: 0.75rem;
-      padding-left: 0.5rem;
-      position: relative;
-    }
-
-    .content.has-text-justified ul li::before {
-      content: '▸';
-      position: absolute;
-      left: -1rem;
-      color: #4facfe;
-      font-weight: bold;
-    }
-
-    /* Improved banner image */
-    .teaser img {
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      border: 3px solid var(--border-color);
-    }
-
-    .teaser img:hover {
-      transform: scale(1.01);
-      border-color: #667eea;
+      color: var(--accent);
     }
   </style>
 </head>
 <body>
 
-<!-- Progress bar -->
-<div class="progress-bar" id="progressBar"></div>
-
-<!-- Scroll to top button -->
-<button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-  <i class="fas fa-arrow-up"></i>
-</button>
 
 <section class="hero">
   <div class="hero-body">
@@ -659,49 +189,36 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Pohang University of Science and Technology (POSTECH)</span>
+            <span class="author-block" style="color: var(--text-sub);">Pohang University of Science and Technology (POSTECH)</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="./static/paper.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
+                <a href="./static/paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://github.com/vap-project/vap"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
+                <a href="https://github.com/vap-project/vap" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
                   </a>
               </span>
               <span class="link-block">
-                <a href="https://huggingface.co/leesangoh"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <p style="font-size:18px">🤗</p>
-                  </span>
+                <a href="https://huggingface.co/leesangoh" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><p style="font-size:18px">🤗</p></span>
                   <span>Dataset</span>
                   </a>
               </span>
             </div>
-
           </div>
         </div>
       </div>
@@ -713,15 +230,15 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       
-      <div class="columns is-centered has-text-centered" style="margin-bottom: 1.5rem;">
+      <div class="columns is-centered has-text-centered" style="margin-bottom: 2.5rem;">
         <div class="column is-full-width">
-          <img src="./static/images/banner.png" alt="VAP Banner" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"/>
+          <img src="./static/images/banner.png" alt="VAP Banner" class="hover-effect" style="width: 100%;"/>
         </div>
       </div>
 
-      <div class="columns is-centered has-text-centered" style="margin-bottom: 2rem;">
+      <div class="columns is-centered has-text-centered" style="margin-bottom: 2.5rem;">
         <div class="column is-four-fifths">
-          <div class="content has-text-justified" style="font-size: 1.1rem;">
+          <div class="content" style="font-size: 1.2rem; color: #444;">
             <p>
               Imagine asking for your favorite coffee mug while getting ready for work, or having a robot fetch your pet’s specific toy from a pile of similar objects. 
               To be truly useful in daily life, robots must discern the subtle details that distinguish <strong>"a cup"</strong> from <strong>"<i>my</i> cup."</strong>
@@ -734,7 +251,7 @@
         
         <div class="item">
           <div class="carousel-item-container">
-            <video poster="" id="camera" autoplay controls muted loop playsinline class="carousel-video">
+            <video poster="" id="camera" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/simpler_bridge_camera.mp4" type="video/mp4">
             </video>
             <p class="carousel-caption">"Put my camera on towel"</p>
@@ -743,7 +260,7 @@
         
         <div class="item">
           <div class="carousel-item-container">
-            <video poster="" id="pen" autoplay controls muted loop playsinline class="carousel-video">
+            <video poster="" id="pen" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/simpler_fractal_pen_holder_matching.mp4" type="video/mp4">
             </video>
             <p class="carousel-caption">"Pick my pen holder"</p>
@@ -752,7 +269,7 @@
 
         <div class="item">
           <div class="carousel-item-container">
-            <video poster="" id="bag" autoplay controls muted loop playsinline class="carousel-video">
+            <video poster="" id="bag" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/vlabench_leather_bag.mp4" type="video/mp4">
             </video>
             <p class="carousel-caption">"Select my leather bag"</p>
@@ -761,7 +278,7 @@
 
         <div class="item">
           <div class="carousel-item-container">
-            <video poster="" id="shaver" autoplay controls muted loop playsinline class="carousel-video">
+            <video poster="" id="shaver" autoplay controls muted loop playsinline class="carousel-video hover-effect">
               <source src="./static/videos/simpler_bridge_shaver.mp4" type="video/mp4">
             </video>
             <p class="carousel-caption">"Pick my shaver"</p>
@@ -770,30 +287,10 @@
 
       </div>
       
-      <h2 class="subtitle has-text-centered" style="margin-top: 1rem; font-size: 1.2rem;">
+      <h2 class="subtitle has-text-centered" style="margin-top: 1.5rem; font-size: 1.25rem; font-weight: 500;">
         <span class="dnerf">VAP</span> enables frozen VLA models to manipulate user-specific objects among visually similar distractors.
       </h2>
 
-    </div>
-  </div>
-</section>
-
-<!-- Key Highlights Section -->
-<section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
-  <div class="container is-max-desktop">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">Zero</div>
-        <div class="stat-label">Training Required</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Simulation Benchmarks</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Training-Free Adaptation</div>
-      </div>
     </div>
   </div>
 </section>
@@ -802,8 +299,8 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">From "A Cup" to "<i>MY</i> Cup"</h2>
-        <div class="content has-text-justified">
+        <h2 class="title is-3" style="color: var(--text-main);">From "A Cup" to "<i>MY</i> Cup"</h2>
+        <div class="content has-text-justified box-container">
           <p>
             Standard Vision-Language-Action (VLA) models are excellent at understanding generic concepts like "pick up <em>the cup</em>." 
             However, they fail when users ask for specific instances: <strong>"Bring <em>my</em> cup."</strong>
@@ -825,7 +322,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified box-container">
           <p>
 While Vision-Language-Action (VLA) models generalize well to generic instructions, they struggle with personalized commands such as "bring my cup," where the robot must act on one specific instance among visually similar objects. 
 We study this setting of manipulating personal objects, in which a VLA must identify and control a user-specific object unseen during training using only a few reference images. 
@@ -847,10 +344,11 @@ Experiments show that VAP consistently outperforms generic policies and token-le
         <h2 class="title is-3">Method: Visual Attentive Prompting</h2>
         <div class="content has-text-centered">
           <img src="./static/images/pipeline.png"
+               class="hover-effect"
                alt="VAP Pipeline"
                style="width: 100%; max-width: 900px;"/>
         </div>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified" style="margin-top: 1.5rem;">
           <p>
             VAP is a <strong>training-free</strong> framework that enables frozen VLA models to understand personalized references.
             Given a few reference images of a user's object (e.g., "my toy owl"), VAP first grounds the object in the current scene using an open-vocabulary detector and a retriever. 
@@ -863,17 +361,18 @@ Experiments show that VAP consistently outperforms generic policies and token-le
   </div>
 </section>
 
-<section class="section">
+<section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Benchmarks Overview</h2>
         <div class="content has-text-centered">
           <img src="./static/images/benchmarks.png"
+               class="hover-effect"
                alt="Benchmarks Overview"
                style="width: 100%; max-width: 1000px;"/>
         </div>
-        <div class="content has-text-justified" style="margin-top: 1rem;">
+        <div class="content has-text-justified" style="margin-top: 1.5rem;">
           <p>
             We establish three benchmarks to rigorously evaluate instance-level manipulation capabilities. 
             In all settings, the robot must identify a user-specific target (defined by ~5 reference images) among visually similar distractors of the same category.
@@ -917,7 +416,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Put my camera on towel"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_bridge_camera.mp4" type="video/mp4">
               </video>
             </div>
@@ -925,7 +424,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Put my owl figurine on plate"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_bridge_owl.mp4" type="video/mp4">
               </video>
             </div>
@@ -933,7 +432,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Pick my shaver"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_bridge_shaver.mp4" type="video/mp4">
               </video>
             </div>
@@ -941,14 +440,14 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Put my straw cup in basket"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_bridge_straw_cup.mp4" type="video/mp4">
               </video>
             </div>
           </div>
         </div>
 
-        <h3 class="title is-4" style="margin-top: 2rem;">2. Personalized-SIMPLER (Google Robot)</h3>
+        <h3 class="title is-4" style="margin-top: 3rem;">2. Personalized-SIMPLER (Google Robot)</h3>
         <div class="content has-text-justified">
           <p>
              Evaluation on the Google Robot using the Fractal dataset setting. We test robustness across 'Visual Matching' (seen environments) and 'Visual Variant' (unseen backgrounds/lighting) tracks.
@@ -958,7 +457,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Pick my pen holder" (Visual Matching)</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_fractal_pen_holder_matching.mp4" type="video/mp4">
               </video>
             </div>
@@ -966,7 +465,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Pick my pen holder" (Visual Variant)</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_fractal_pen_holder_variant.mp4" type="video/mp4">
               </video>
             </div>
@@ -974,7 +473,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Move my bottle near coke can" (Visual Matching)</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_fractal_bottle_matching.mp4" type="video/mp4">
               </video>
             </div>
@@ -982,14 +481,14 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-half">
             <div class="content">
               <p class="has-text-weight-semibold">"Move my bottle near coke can" (Visual Variant)</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/simpler_fractal_bottle_variant.mp4" type="video/mp4">
               </video>
             </div>
           </div>
         </div>
 
-        <h3 class="title is-4" style="margin-top: 2rem;">3. Personalized-VLABench</h3>
+        <h3 class="title is-4" style="margin-top: 3rem;">3. Personalized-VLABench</h3>
         <div class="content has-text-justified">
           <p>
             Multi-view selection tasks on a Franka Emika Panda arm. The agent must identify the correct user object from three camera views (Front, Side, Wrist) and touch it.
@@ -999,7 +498,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-one-third">
             <div class="content">
               <p class="has-text-weight-semibold">"Select my leather bag"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/vlabench_leather_bag.mp4" type="video/mp4">
               </video>
             </div>
@@ -1007,7 +506,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-one-third">
             <div class="content">
               <p class="has-text-weight-semibold">"Select my cat figurine"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/vlabench_cat.mp4" type="video/mp4">
               </video>
             </div>
@@ -1015,7 +514,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-one-third">
             <div class="content">
               <p class="has-text-weight-semibold">"Select my cup"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/vlabench_cup.mp4" type="video/mp4">
               </video>
             </div>
@@ -1024,7 +523,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-one-third is-offset-one-sixth">
             <div class="content">
               <p class="has-text-weight-semibold">"Select my miniature house"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/vlabench_house.mp4" type="video/mp4">
               </video>
             </div>
@@ -1032,7 +531,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           <div class="column is-one-third">
             <div class="content">
               <p class="has-text-weight-semibold">"Select my shoe"</p>
-              <video autoplay controls muted loop playsinline height="100%">
+              <video autoplay controls muted loop playsinline height="100%" class="hover-effect">
                 <source src="./static/videos/vlabench_shoe.mp4" type="video/mp4">
               </video>
             </div>
@@ -1044,15 +543,15 @@ Experiments show that VAP consistently outperforms generic policies and token-le
   </div>
 </section>
 
-<section class="section">
+<section class="section hero is-light">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Quantitative Analysis</h2>
     
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">WidowX (Bridge)</h4>
-        <img src="./static/images/table3.png" alt="Table 3 Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 0.5rem;">
+        <img src="./static/images/table3.png" class="hover-effect" alt="Table 3 Results" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 1rem;">
           <p>
             On the WidowX arm using the Bridge dataset, tasks involve precise pick-and-place in cluttered scenes. 
             While baselines often fail to identify the correct instance (resulting in near-zero success for hard prompts), VAP achieves high success rates across all tasks, effectively grounding the user's object even when visually similar distractors are present.
@@ -1061,13 +560,13 @@ Experiments show that VAP consistently outperforms generic policies and token-le
       </div>
     </div>
     
-    <div style="margin-bottom: 2rem;"></div>
+    <div style="margin-bottom: 3rem;"></div>
 
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Google Robot (Fractal)</h4>
-        <img src="./static/images/table2.png" alt="Table 2 Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 0.5rem;">
+        <img src="./static/images/table2.png" class="hover-effect" alt="Table 2 Results" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 1rem;">
           <p>
             We evaluate robustness on the Google Robot (Fractal) across 'Visual Matching' (seen environments) and 'Visual Variant' (unseen backgrounds/lighting) tracks. 
             VAP significantly outperforms generic policies and text-based prompts. Notably, in the challenging <strong>Visual Variant</strong> track, VAP maintains a strong success rate of 58.2%, whereas the best baseline drops to 17.3%, demonstrating superior generalization to novel visual conditions.
@@ -1076,13 +575,13 @@ Experiments show that VAP consistently outperforms generic policies and token-le
       </div>
     </div>
 
-    <div style="margin-bottom: 2rem;"></div>
+    <div style="margin-bottom: 3rem;"></div>
 
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Personalized-VLABench</h4>
-        <img src="./static/images/table4.png" alt="Table 4 Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 0.5rem;">
+        <img src="./static/images/table4.png" class="hover-effect" alt="Table 4 Results" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 1rem;">
           <p>
             In multi-view selection tasks with a Franka Emika Panda, the agent must handle occlusion and consistency across front, side, and wrist cameras.
             VAP achieves the highest Success Rate (SR) across all 5 object categories, proving its ability to aggregate visual cues from multiple viewpoints to resolve ambiguity.
@@ -1091,13 +590,13 @@ Experiments show that VAP consistently outperforms generic policies and token-le
       </div>
     </div>
 
-    <div style="margin-bottom: 2rem;"></div>
+    <div style="margin-bottom: 3rem;"></div>
 
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-centered">
         <h4 class="title is-5">Real-world Performance</h4>
-        <img src="./static/images/figure5.png" alt="Real-world Results" style="width:100%;">
-        <div class="content has-text-justified" style="margin-top: 0.5rem;">
+        <img src="./static/images/figure5.png" class="hover-effect" alt="Real-world Results" style="width:100%;">
+        <div class="content has-text-justified" style="margin-top: 1rem;">
           <p>
             We validate VAP on a physical tabletop setup with a SO-101 arm using 8 everyday object categories. 
             VAP (yellow bars) consistently outperforms baselines (blue/green/red) in both pointing and pick-and-place tasks, confirming that our training-free visual prompting method transfers reliably to the real world with unseen physical objects.
@@ -1112,14 +611,8 @@ Experiments show that VAP consistently outperforms generic policies and token-le
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-      <h2 class="title" style="margin-bottom: 0;">BibTeX</h2>
-      <button onclick="copyBibTeX()" style="background: var(--primary-gradient); border: none; color: white; padding: 0.5rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem;">
-        <i class="fas fa-copy"></i>
-        <span id="copyText">Copy</span>
-      </button>
-    </div>
-    <pre id="bibtex-code"><code>@article{vap2025bringmycup,
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{vap2025bringmycup,
   title={Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting},
   author={Lee, Sangoh and Mo, Sangwoo and Han, Wook-Shin},
   journal={arXiv preprint arXiv:25xx.xxxxx},
@@ -1157,173 +650,6 @@ Experiments show that VAP consistently outperforms generic policies and token-le
     </div>
   </div>
 </footer>
-
-
-<script>
-// Progress bar
-window.addEventListener('scroll', function() {
-  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (winScroll / height) * 100;
-  document.getElementById('progressBar').style.width = scrolled + '%';
-});
-
-// Scroll to top button
-const scrollToTopBtn = document.getElementById('scrollToTop');
-
-window.addEventListener('scroll', function() {
-  if (window.pageYOffset > 300) {
-    scrollToTopBtn.classList.add('visible');
-  } else {
-    scrollToTopBtn.classList.remove('visible');
-  }
-});
-
-scrollToTopBtn.addEventListener('click', function() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
-
-// Scroll reveal animation
-function revealOnScroll() {
-  const reveals = document.querySelectorAll('.reveal');
-
-  reveals.forEach(element => {
-    const windowHeight = window.innerHeight;
-    const elementTop = element.getBoundingClientRect().top;
-    const elementVisible = 150;
-
-    if (elementTop < windowHeight - elementVisible) {
-      element.classList.add('active');
-    }
-  });
-}
-
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
-
-// Add reveal class to sections on load
-document.addEventListener('DOMContentLoaded', function() {
-  // Add reveal class to all sections
-  const sections = document.querySelectorAll('section');
-  sections.forEach(section => {
-    section.classList.add('reveal');
-  });
-
-  // Trigger initial reveal
-  revealOnScroll();
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
-
-  // Add particle effect to hero section
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    const particles = document.createElement('div');
-    particles.className = 'particles';
-
-    for (let i = 0; i < 20; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 6 + 's';
-      particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-      particles.appendChild(particle);
-    }
-
-    hero.appendChild(particles);
-  }
-
-  // Add hover effect to videos
-  const videos = document.querySelectorAll('video');
-  videos.forEach(video => {
-    video.addEventListener('mouseenter', function() {
-      this.play();
-    });
-  });
-
-  // Animate stats on scroll
-  const statCards = document.querySelectorAll('.stat-card');
-  let statsAnimated = false;
-
-  function animateStats() {
-    if (statsAnimated) return;
-
-    const windowHeight = window.innerHeight;
-    statCards.forEach((card, index) => {
-      const cardTop = card.getBoundingClientRect().top;
-
-      if (cardTop < windowHeight - 100) {
-        setTimeout(() => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-
-          setTimeout(() => {
-            card.style.transition = 'all 0.6s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 50);
-        }, index * 100);
-
-        statsAnimated = true;
-      }
-    });
-  }
-
-  window.addEventListener('scroll', animateStats);
-  animateStats();
-
-  // Parallax effect for images
-  window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.hero-body img');
-
-    parallaxElements.forEach(element => {
-      const speed = 0.5;
-      element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-  });
-});
-
-// Add gradient animation to title
-const title = document.querySelector('.publication-title');
-if (title) {
-  let hue = 0;
-  setInterval(() => {
-    hue = (hue + 1) % 360;
-    title.style.filter = `hue-rotate(${hue}deg)`;
-  }, 50);
-}
-
-// Copy BibTeX function
-function copyBibTeX() {
-  const bibtexCode = document.getElementById('bibtex-code').textContent;
-  const copyText = document.getElementById('copyText');
-
-  navigator.clipboard.writeText(bibtexCode).then(function() {
-    copyText.textContent = 'Copied!';
-    setTimeout(() => {
-      copyText.textContent = 'Copy';
-    }, 2000);
-  }).catch(function(err) {
-    console.error('Failed to copy: ', err);
-  });
-}
-</script>
 
 </body>
 </html>
