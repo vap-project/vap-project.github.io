@@ -34,17 +34,11 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Bring My Cup! ☕<br>Personalizing Vision-Language-Action Models with Visual Attentive Prompting</h1>
+          <h1 class="title is-1 publication-title">Bring <i>My</i> Cup! ☕<br>Personalizing Vision-Language-Action Models with Visual Attentive Prompting</h1>
           
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://leesangoh.github.io/" target="_blank">Sangoh Lee</a>
-              <a href="https://www.linkedin.com/in/sangoh-lee-6aba1a23a/" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; margin-left: 2px; border: none; vertical-align: middle;">
-                <i class="fab fa-linkedin" style="color: #0077b5;"></i>
-              </a>
-              <a href="#" target="_blank" class="external-link button is-small is-rounded is-light" style="padding: 0px 8px; border: none; vertical-align: middle;">
-                <i class="fab fa-twitter" style="color: #1DA1F2;"></i>
-              </a>
             </span>
             ,
             <span class="author-block">
@@ -98,26 +92,6 @@
                   <span>Dataset</span>
                   </a>
               </span>
-              <span class="link-block">
-                <a href="https://www.linkedin.com/in/sangoh-lee-6aba1a23a/"
-                   target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-linkedin"></i>
-                  </span>
-                  <span>LinkedIn</span>
-                  </a>
-              </span>
-              <span class="link-block">
-                <a href="#"
-                   target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-twitter"></i>
-                  </span>
-                  <span>Twitter</span>
-                  </a>
-              </span>
             </div>
 
           </div>
@@ -130,9 +104,12 @@
 <section class="hero teaser" id="teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="./static/images/banner.png" alt="VAP Banner" style="width: 100%; margin-top: 1.5rem;"/>
+      <video id="teaser" autoplay muted loop playsinline controls height="100%">
+        <source src="./static/videos/highlight.mp4" type="video/mp4">
+      </video>
+      
       <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
-        VAP enables frozen VLA models to manipulate user-specific objects (e.g., "my cup") among visually similar distractors without any training.
+        VAP enables frozen VLA models to manipulate user-specific objects (e.g., "<i>my</i> cup") among visually similar distractors without any training.
       </h2>
     </div>
   </div>
@@ -142,7 +119,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">From "A Cup" to "MY Cup"</h2>
+        <h2 class="title is-3">From "A Cup" to "<i>MY</i> Cup"</h2>
         <div class="content has-text-justified">
           <p>
             Standard Vision-Language-Action (VLA) models are excellent at understanding generic concepts like "pick up <em>the cup</em>." 
@@ -247,48 +224,7 @@ Experiments show that VAP consistently outperforms generic policies and token-le
           </p>
         </div>
 
-        <h3 class="title is-4" style="margin-top: 2rem;">1. Personalized-SIMPLER (Google Robot)</h3>
-        <div class="content has-text-justified">
-          <p>
-             Evaluation on the Google Robot using the Fractal dataset setting. We test robustness across 'Visual Matching' (seen environments) and 'Visual Variant' (unseen backgrounds/lighting) tracks.
-          </p>
-        </div>
-        <div class="columns is-multiline">
-          <div class="column is-half">
-            <div class="content">
-              <p class="has-text-weight-semibold">"Pick my pen holder" (Visual Matching)</p>
-              <video autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/simpler_fractal_pen_holder_matching.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="content">
-              <p class="has-text-weight-semibold">"Pick my pen holder" (Visual Variant)</p>
-              <video autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/simpler_fractal_pen_holder_variant.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="content">
-              <p class="has-text-weight-semibold">"Move coke can near my bottle" (Visual Matching)</p>
-              <video autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/simpler_fractal_bottle_matching.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="content">
-              <p class="has-text-weight-semibold">"Move coke can near my bottle" (Visual Variant)</p>
-              <video autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/simpler_fractal_bottle_variant.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-
-        <h3 class="title is-4" style="margin-top: 2rem;">2. Personalized-SIMPLER (WidowX)</h3>
+        <h3 class="title is-4" style="margin-top: 2rem;">1. Personalized-SIMPLER (WidowX)</h3>
         <div class="content has-text-justified">
           <p>
             Evaluation on the WidowX arm using the Bridge dataset setting. These tasks involve pick-and-place operations in cluttered environments where distractors closely resemble the target object.
@@ -324,6 +260,47 @@ Experiments show that VAP consistently outperforms generic policies and token-le
               <p class="has-text-weight-semibold">"Put my straw cup in basket"</p>
               <video autoplay controls muted loop playsinline height="100%">
                 <source src="./static/videos/simpler_bridge_straw_cup.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 2rem;">2. Personalized-SIMPLER (Google Robot)</h3>
+        <div class="content has-text-justified">
+          <p>
+             Evaluation on the Google Robot using the Fractal dataset setting. We test robustness across 'Visual Matching' (seen environments) and 'Visual Variant' (unseen backgrounds/lighting) tracks.
+          </p>
+        </div>
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <div class="content">
+              <p class="has-text-weight-semibold">"Pick my pen holder" (Visual Matching)</p>
+              <video autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/simpler_fractal_pen_holder_matching.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="content">
+              <p class="has-text-weight-semibold">"Pick my pen holder" (Visual Variant)</p>
+              <video autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/simpler_fractal_pen_holder_variant.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="content">
+              <p class="has-text-weight-semibold">"Move my bottle near coke can" (Visual Matching)</p>
+              <video autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/simpler_fractal_bottle_matching.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="content">
+              <p class="has-text-weight-semibold">"Move my bottle near coke can" (Visual Variant)</p>
+              <video autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/simpler_fractal_bottle_variant.mp4" type="video/mp4">
               </video>
             </div>
           </div>
